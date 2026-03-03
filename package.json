@@ -4,31 +4,13 @@
   "type": "module",
   "private": false,
   "license": "MIT",
-  "description": "Kener is a modern, open-source status page application built with Node.js. It provides real-time monitoring, uptime tracking, incident management, and beautiful dashboards. Perfect for DevOps teams, SaaS providers, and businesses needing reliable service status communication with minimal setup.",
-  "author": "Raj Nandan Sharma <rajnandan1@gmail.com>",
-  "keywords":[
-    "status page",
-    "uptime monitoring",
-    "incident management",
-    "DevOps tools",
-    "service reliability",
-    "open source",
-    "Node.js",
-    "dashboard",
-    "system monitoring",
-    "status alerts",
-    "outage communication",
-    "API monitoring",
-    "SaaS status",
-    "performance metrics",
-    "status reporting"
-  ],
+  "description": "Kener is a modern, open-source status page application built with Node.js.",
   "repository": {
     "type": "git",
     "url": "https://github.com/rajnandan1/kener.git"
   },
   "scripts": {
-    "build": "echo DATABASE_TYPE=postgres > .env && echo DATABASE_URL=postgres://dummy >> .env && node scripts/build-sveltekit.js && node scripts/build-server.js",
+    "build": "echo 'DATABASE_TYPE=postgres' > .env.production && echo 'DATABASE_URL=postgres://dummy' >> .env.production && cross-env DATABASE_TYPE=postgres node scripts/build-sveltekit.js && cross-env DATABASE_TYPE=postgres node scripts/build-server.js",
     "build-with-docs": "node scripts/build-sveltekit.js --with-docs && node scripts/build-server.js",
     "build:sveltekit": "vite build",
     "build:server": "node scripts/build-server.js",
