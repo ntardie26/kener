@@ -95,7 +95,7 @@
     "vite-plugin-devtools-json": "^1.0.0"
   },
   "engines": {
-    "node": "20.x"
+    "node": "22.x"
   },
   "dependencies": {
     "@babel/runtime": "^7.28.4",
