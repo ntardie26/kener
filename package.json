@@ -28,7 +28,7 @@
     "url": "https://github.com/rajnandan1/kener.git"
   },
   "scripts": {
-    "build": "node scripts/build-sveltekit.js && node scripts/build-server.js",
+    "build": "DATABASE_TYPE=postgres node scripts/build-sveltekit.js && node scripts/build-server.js",
     "build-with-docs": "node scripts/build-sveltekit.js --with-docs && node scripts/build-server.js",
     "build:sveltekit": "vite build",
     "build:server": "node scripts/build-server.js",
