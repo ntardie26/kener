@@ -78,6 +78,12 @@
   "engines": {
     "node": "24.x"
   },
+  "scripts": {
+    "dev": "node scripts/dev.js",
+    "build": "cross-env DATABASE_TYPE=postgresql VITE_DATABASE_TYPE=postgresql node scripts/build-sveltekit.js && cross-env DATABASE_TYPE=postgresql VITE_DATABASE_TYPE=postgresql node scripts/build-server.js",
+    "start": "node build/main.js",
+    "prepare": "cross-env DATABASE_TYPE=postgresql svelte-kit sync || echo ''"
+  },
   "dependencies": {
     "cross-env": "^10.1.0",
     "@babel/runtime": "^7.28.4",
