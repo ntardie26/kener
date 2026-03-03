@@ -28,7 +28,7 @@
     "url": "https://github.com/rajnandan1/kener.git"
   },
   "scripts": {
-    "build": "DATABASE_TYPE=postgres node scripts/build-sveltekit.js && node scripts/build-server.js",
+    "build": "DATABASE_TYPE=postgres DATABASE_URL=postgres://dummy node scripts/build-sveltekit.js && DATABASE_TYPE=postgres DATABASE_URL=postgres://dummy node scripts/build-server.js",
     "build-with-docs": "node scripts/build-sveltekit.js --with-docs && node scripts/build-server.js",
     "build:sveltekit": "vite build",
     "build:server": "node scripts/build-server.js",
@@ -95,7 +95,7 @@
     "vite-plugin-devtools-json": "^1.0.0"
   },
   "engines": {
-    "node": ">=20.0.0"
+    "node": "20.x"
   },
   "dependencies": {
     "@babel/runtime": "^7.28.4",
