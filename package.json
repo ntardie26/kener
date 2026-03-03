@@ -5,32 +5,27 @@
   "private": false,
   "license": "MIT",
   "description": "Kener is a modern, open-source status page application built with Node.js.",
+  "author": "Raj Nandan Sharma <rajnandan1@gmail.com>",
   "repository": {
     "type": "git",
     "url": "https://github.com/rajnandan1/kener.git"
   },
+  "engines": {
+    "node": "24.x"
+  },
   "scripts": {
-    "build": "cross-env DATABASE_TYPE=postgres VITE_DATABASE_TYPE=postgres DATABASE_URL=postgres://dummy node scripts/build-sveltekit.js && cross-env DATABASE_TYPE=postgres VITE_DATABASE_TYPE=postgres DATABASE_URL=postgres://dummy node scripts/build-server.js",
-    "build-with-docs": "node scripts/build-sveltekit.js --with-docs && node scripts/build-server.js",
-    "build:sveltekit": "vite build",
-    "build:server": "node scripts/build-server.js",
-    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
-    "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-    "configure": "node build.js",
+    "prepare": "cross-env DATABASE_TYPE=postgresql svelte-kit sync || echo ''",
+    "build": "cross-env DATABASE_TYPE=postgresql VITE_DATABASE_TYPE=postgresql DATABASE_URL=postgres://dummy node scripts/build-sveltekit.js && cross-env DATABASE_TYPE=postgresql VITE_DATABASE_TYPE=postgresql DATABASE_URL=postgres://dummy node scripts/build-server.js",
+    "start": "node build/main.js",
     "dev": "npm-run-all --parallel devschedule development",
     "development": "vite dev",
     "devschedule": "vite-node src/lib/server/startup.ts",
     "generate-readme": "node scripts/generate-readme.js",
     "index-docs": "vite-node scripts/index-docs.ts",
     "migrate": "vite-node scripts/fix-migration-ext.ts && npx knex migrate:latest",
-    "predev": "npm run seed",
-    "prepare": "cross-env DATABASE_TYPE=postgres svelte-kit sync || echo ''",
-    "preseed": "vite-node scripts/fix-migration-ext.ts && npx knex migrate:latest",
     "prettify": "prettier --write .",
     "preview": "vite preview",
-    "schedule": "vite-node src/lib/server/startup.ts",
-    "seed": "npx knex seed:run",
-    "start": "node build/main.js"
+    "seed": "npx knex seed:run"
   },
   "devDependencies": {
     "@internationalized/date": "^3.10.0",
@@ -74,15 +69,6 @@
     "vite": "^7.2.2",
     "vite-node": "^5.3.0",
     "vite-plugin-devtools-json": "^1.0.0"
-  },
-  "engines": {
-    "node": "24.x"
-  },
-  "scripts": {
-    "dev": "node scripts/dev.js",
-    "build": "cross-env DATABASE_TYPE=postgresql VITE_DATABASE_TYPE=postgresql node scripts/build-sveltekit.js && cross-env DATABASE_TYPE=postgresql VITE_DATABASE_TYPE=postgresql node scripts/build-server.js",
-    "start": "node build/main.js",
-    "prepare": "cross-env DATABASE_TYPE=postgresql svelte-kit sync || echo ''"
   },
   "dependencies": {
     "cross-env": "^10.1.0",
