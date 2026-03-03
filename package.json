@@ -10,7 +10,7 @@
     "url": "https://github.com/rajnandan1/kener.git"
   },
   "scripts": {
-    "build": "echo 'DATABASE_TYPE=postgres' > .env.production && echo 'DATABASE_URL=postgres://dummy' >> .env.production && cross-env DATABASE_TYPE=postgres node scripts/build-sveltekit.js && cross-env DATABASE_TYPE=postgres node scripts/build-server.js",
+    "build": "cross-env DATABASE_TYPE=postgres VITE_DATABASE_TYPE=postgres DATABASE_URL=postgres://dummy node scripts/build-sveltekit.js && cross-env DATABASE_TYPE=postgres VITE_DATABASE_TYPE=postgres DATABASE_URL=postgres://dummy node scripts/build-server.js",
     "build-with-docs": "node scripts/build-sveltekit.js --with-docs && node scripts/build-server.js",
     "build:sveltekit": "vite build",
     "build:server": "node scripts/build-server.js",
@@ -24,7 +24,7 @@
     "index-docs": "vite-node scripts/index-docs.ts",
     "migrate": "vite-node scripts/fix-migration-ext.ts && npx knex migrate:latest",
     "predev": "npm run seed",
-    "prepare": "svelte-kit sync || echo ''",
+    "prepare": "cross-env DATABASE_TYPE=postgres svelte-kit sync || echo ''",
     "preseed": "vite-node scripts/fix-migration-ext.ts && npx knex migrate:latest",
     "prettify": "prettier --write .",
     "preview": "vite preview",
@@ -54,7 +54,6 @@
     "autoprefixer": "^10.4.22",
     "clsx": "^2.1.1",
     "concurrently": "^9.2.1",
-    "cross-env": "^10.1.0",
     "date-picker-svelte": "^2.17.0",
     "layerchart": "^2.0.0-next.43",
     "postcss": "^8.5.6",
@@ -80,6 +79,7 @@
     "node": "24.x"
   },
   "dependencies": {
+    "cross-env": "^10.1.0",
     "@babel/runtime": "^7.28.4",
     "@codemirror/autocomplete": "^6.20.0",
     "@codemirror/commands": "^6.10.1",
